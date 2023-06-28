@@ -35,7 +35,7 @@ runs:
         mkdir download && cd download
         wget https://github.com/realm/SwiftLint/releases/download/${{ env.SL_VERSION }}/portable_swiftlint.zip
         unzip portable_swiftlint.zip
-        echo SWIFTLINT_BINARY="$(pwd -L)/portable_swiftlint/swiftlint" >> $GITHUB_ENV
+        echo SWIFTLINT_BINARY="$(pwd -L)/swiftlint" >> $GITHUB_ENV
       working-directory: ${{ github.action_path }}
     - name: Print Environment
       shell: bash

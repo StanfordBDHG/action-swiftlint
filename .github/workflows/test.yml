@@ -2,6 +2,8 @@ name: Tests Action
 
 on:
   push:
+    branches:
+      - main
   pull_request:
 
 jobs:
@@ -32,9 +34,9 @@ jobs:
         shell: bash
         run: |
           mkdir download && cd download
-          wget https://github.com/realm/SwiftLint/releases/download/latest/portable_swiftlint.zip
+          wget https://github.com/realm/SwiftLint/releases/download/0.52.3/portable_swiftlint.zip
           unzip portable_swiftlint.zip
-          echo SWIFTLINT_BINARY="$(pwd -L)/portable_swiftlint/swiftlint" >> $GITHUB_ENV
+          echo SWIFTLINT_BINARY="$(pwd -L)/swiftlint" >> $GITHUB_ENV
         working-directory: ${{ github.action_path }}
       - name: Print Environment
         shell: bash
