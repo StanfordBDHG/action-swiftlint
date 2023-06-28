@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ["ubuntu-18.04", "ubuntu-20.04", "ubuntu-22.04", "macos-11", "macos-12", "macos-13"]
+        os: ["ubuntu-20.04", "ubuntu-22.04", "macos-11", "macos-12", "macos-13"]
         version: ["0.52.3", "latest"]
 
     runs-on: ${{ matrix.os }}
@@ -31,6 +31,7 @@ jobs:
       - name: Download SwiftLint ${{ inputs.version }}
         shell: bash
         run: |
+          mkdir download && cd download
           wget https://github.com/realm/SwiftLint/releases/download/latest/portable_swiftlint.zip
           unzip portable_swiftlint.zip
           export SWIFTLINT_BINARY="$(pwd -L)/portable_swiftlint/swiftlint"

@@ -19,10 +19,19 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - shell: bash
+      run: export SL_VERSION=${{ inputs.version }}
+    - name: Determine latest version
+      if: ${{ inputs.version == 'latest' }}
+      shell: bash
+      run: |
+        SL_TAG_VERSION=$(curl -I https://github.com/realm/SwiftLint/releases/latest |grep -ioE "tag/(\d+\.\d+\.\d+)")
+        SL_VERSION=${version_tag#"tag/"}
     - name: Download SwiftLint ${{ inputs.version }}
       shell: bash
       run: |
-        wget https://github.com/realm/SwiftLint/releases/download/${{ inputs.version }}/portable_swiftlint.zip
+        mkdir download && cd download
+        wget https://github.com/realm/SwiftLint/releases/download/${{ env.SL_VERSION }}/portable_swiftlint.zip
         unzip portable_swiftlint.zip
         export SWIFTLINT_BINARY="$(pwd -L)/portable_swiftlint/swiftlint"
       working-directory: ${{ github.action_path }}
