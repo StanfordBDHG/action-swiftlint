@@ -11,10 +11,6 @@ name: SwiftLint
 
 on:
   pull_request:
-    paths:
-      - '.github/workflows/swiftlint.yml'
-      - '.swiftlint.yml'
-      - '**/*.swift'
 
 jobs:
   SwiftLint:
@@ -23,14 +19,28 @@ jobs:
       - uses: actions/checkout@v3
       - name: GitHub Action for SwiftLint
         uses: Supereg/action-swiftlint@v4
+```
+
+### Supply arguments
+```yaml
       - name: GitHub Action for SwiftLint with --strict
         uses: Supereg/action-swiftlint@v4
         with:
           args: --strict
+```
+
+### Only apply to changed files in PR
+
+```yaml
       - name: GitHub Action for SwiftLint (Only files changed in the PR)
         uses: Supereg/action-swiftlint@v4
         env:
           DIFF_BASE: ${{ github.base_ref }}
+```
+
+### Modify the working directory
+
+```yaml
       - name: GitHub Action for SwiftLint (Different working directory)
         uses: Supereg/action-swiftlint@v4
         env:
@@ -43,6 +53,8 @@ jobs:
 - Since 3.0.0, `GITHUB_TOKEN` is no longer needed.
 
 ## Example
+
+Below is an image how this action might look like in your PR!
 
 ![screenshot](screenshot.png)
 

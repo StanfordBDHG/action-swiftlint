@@ -1,5 +1,5 @@
-name: 'GitHub Action for SwiftLint'
-description: 'A tool to enforce Swift style and conventions'
+name: 'SwiftLint'
+description: 'A tool to enforce Swift style and conventions using the official image.'
 author: 'Andreas Bauer <mail@andi-bauer.com>'
 runs:
   using: 'docker'
