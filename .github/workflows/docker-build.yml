@@ -2,25 +2,15 @@ name: Docker Build
 
 on:
   push:
-    branches: [master]
-    paths: 
-      - '.dockerignore'
-      - '.github/workflows/docker-build.yml'
-      - 'Dockerfile'
-      - 'entrypoint.sh'
+    branches: [main]
   pull_request:
-    paths: 
-      - '.dockerignore'
-      - '.github/workflows/docker-build.yml'
-      - 'Dockerfile'
-      - 'entrypoint.sh'
 
 jobs:
   DockerBuild:
     name: Docker Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - name: Docker Build
         run: docker build -t action-swiftlint .
 
