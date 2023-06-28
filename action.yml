@@ -26,14 +26,14 @@ runs:
       shell: bash
       run: |
         SL_TAG_VERSION=$(curl -I https://github.com/realm/SwiftLint/releases/latest |grep -ioE "tag/(\d+\.\d+\.\d+)")
-        SL_VERSION=${version_tag#"tag/"}
+        echo SL_VERSION=${version_tag#"tag/"} >> $GITHUB_ENV
     - name: Download SwiftLint ${{ inputs.version }}
       shell: bash
       run: |
         mkdir download && cd download
         wget https://github.com/realm/SwiftLint/releases/download/${{ env.SL_VERSION }}/portable_swiftlint.zip
         unzip portable_swiftlint.zip
-        export SWIFTLINT_BINARY="$(pwd -L)/portable_swiftlint/swiftlint"
+        echo SWIFTLINT_BINARY="$(pwd -L)/portable_swiftlint/swiftlint" >> $GITHUB_ENV
       working-directory: ${{ github.action_path }}
     - name: Print Environment
       shell: bash
