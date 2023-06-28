@@ -35,7 +35,7 @@ jobs:
         run: |
           mkdir download && cd download
           wget https://github.com/realm/SwiftLint/releases/download/0.52.3/swiftlint_linux.zip
-          unzip portable_swiftlint.zip
+          unzip swiftlint_linux.zip
           echo SWIFTLINT_BINARY="$(pwd -L)/swiftlint" >> $GITHUB_ENV
         working-directory: ${{ github.action_path }}
       - name: Print Environment

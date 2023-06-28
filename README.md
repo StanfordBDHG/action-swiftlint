@@ -2,6 +2,8 @@
 
 This Action executes [SwiftLint](https://github.com/realm/SwiftLint) and generates annotations from SwiftLint Violations.
 
+Ubuntu and >=macos-12
+
 ## Usage
 
 An example workflow(`.github/workflows/swiftlint.yml`) to executing SwiftLint follows:
