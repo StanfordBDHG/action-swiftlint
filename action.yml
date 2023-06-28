@@ -22,7 +22,7 @@ runs:
     - shell: bash
       run: echo SL_VERSION=${{ inputs.version }} >> $GITHUB_ENV
     - name: Determine latest version
-      if: ${{ inputs.version == "latest" }}
+      if: ${{ inputs.version == 'latest' }}
       shell: bash
       run: |
         TAG_VERSION=$(curl -I https://github.com/realm/SwiftLint/releases/latest |grep -ioE "tag/(\d+\.\d+\.\d+)")
@@ -31,7 +31,7 @@ runs:
         echo "Determined SwiftLint latest version: ${TAG_VERSION} ${VERSION}"
 
     - name: Download SwiftLint ${{ inputs.version }} (macOS)
-      if: ${{ runner.os == "macOS" }}
+      if: ${{ runner.os == 'macOS' }}
       shell: bash
       run: |
         mkdir download && cd download
@@ -41,7 +41,7 @@ runs:
       working-directory: ${{ github.action_path }}
 
     - name: Download SwiftLint ${{ inputs.version }} (Linux)
-      if: ${{ runner.os == "Linux" }}
+      if: ${{ runner.os == 'Linux' }}
       shell: bash
       run: |
         mkdir download && cd download
