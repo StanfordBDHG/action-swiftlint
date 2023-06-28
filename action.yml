@@ -20,13 +20,15 @@ runs:
   using: "composite"
   steps:
     - shell: bash
-      run: export SL_VERSION=${{ inputs.version }}
+      run: echo SL_VERSION=${{ inputs.version }} >> $GITHUB_ENV
     - name: Determine latest version
       if: ${{ inputs.version == 'latest' }}
       shell: bash
       run: |
-        SL_TAG_VERSION=$(curl -I https://github.com/realm/SwiftLint/releases/latest |grep -ioE "tag/(\d+\.\d+\.\d+)")
-        echo SL_VERSION=${version_tag#"tag/"} >> $GITHUB_ENV
+        TAG_VERSION=$(curl -I https://github.com/realm/SwiftLint/releases/latest |grep -ioE "tag/(\d+\.\d+\.\d+)")
+        VERSION=${version_tag#"tag/"}
+        echo SL_VERSION=${VERSION} >> $GITHUB_ENV
+        echo "Determined SwiftLint latest version: ${VERSION}"
     - name: Download SwiftLint ${{ inputs.version }}
       shell: bash
       run: |
