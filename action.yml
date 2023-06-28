@@ -26,7 +26,7 @@ runs:
       shell: bash
       run: |
         TAG_VERSION=$(curl -I https://github.com/realm/SwiftLint/releases/latest |grep -ioE "tag/(\d+\.\d+\.\d+)")
-        VERSION=${version_tag#"tag/"}
+        VERSION=${TAG_VERSION#"tag/"}
         echo SL_VERSION="${VERSION}" >> $GITHUB_ENV
         echo "Determined SwiftLint latest version: ${TAG_VERSION} ${VERSION}"
 
