@@ -4,4 +4,4 @@
 ::warning file=Package.swift,line=28,col=1::Line Length Violation: Line should be 120 characters or less; currently it has 122 characters (line_length)
 ::warning file=Package.swift,line=34,col=38::Trailing Comma Violation: Collection literals should not have trailing commas (trailing_comma)
 ::warning file=Tests/errorsTests/XCTestManifests.swift,line=14,col=39::Trailing Comma Violation: Collection literals should not have trailing commas (trailing_comma)
-::warning file=Tests/errorsTests/errorsTests.swift,line=22,col=36::Trailing Comma Violation: Collection literals should not have trailing commas (trailing_comma)
+::warning file=Tests/errorsTests/errorsTests.swift,line=21,col=36::Trailing Comma Violation: Collection literals should not have trailing commas (trailing_comma)
