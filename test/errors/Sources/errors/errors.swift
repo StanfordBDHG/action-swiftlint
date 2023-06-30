@@ -6,7 +6,6 @@
 // SPDX-License-Identifier: MIT
 //
 
-
 struct errors {
     var text = "Hello, World!"
 }
