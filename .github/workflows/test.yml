@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ["ubuntu-20.04", "ubuntu-22.04", "macos-12", "macos-13"]
+        os: ["ubuntu-22.04", "macos-12", "macos-13"]
         version: ["0.57.0", "latest"]
 
     runs-on: ${{ matrix.os }}
@@ -31,20 +31,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Download SwiftLint latest (Linux)
-        if: ${{ inputs.version == 'latest' && runner.os == 'Linux' }}
         shell: bash
         run: |
           mkdir download && cd download
           wget https://github.com/realm/SwiftLint/releases/latest/download/swiftlint_linux.zip
-          unzip swiftlint_linux.zip
-          echo SWIFTLINT_BINARY="$(pwd -L)/swiftlint" >> $GITHUB_ENV
-        working-directory: ${{ github.action_path }}
-      - name: Download SwiftLint ${{ inputs.version }} (Linux)
-        if: ${{ inputs.version != 'latest' && runner.os == 'Linux' }}
-        shell: bash
-        run: |
-          mkdir download && cd download
-          wget https://github.com/realm/SwiftLint/releases/download/${{ env.SL_VERSION }}/swiftlint_linux.zip
           unzip swiftlint_linux.zip
           echo SWIFTLINT_BINARY="$(pwd -L)/swiftlint" >> $GITHUB_ENV
         working-directory: ${{ github.action_path }}
