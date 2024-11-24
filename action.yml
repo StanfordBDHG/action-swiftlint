@@ -73,6 +73,6 @@ runs:
       run: |
         echo "Downloaded SwiftLint to ${{ env.SWIFTLINT_BINARY }}"
     - name: swiftlint
-      run: ${{ github.action_path }}/swiftlint.sh ${{ inputs.swiftlint-args }}
+      run: ${{ github.action_path }}/swiftlint.sh ${{ inputs.args }}
       shell: bash
       working-directory: '${{ github.workspace }}/${{ inputs.working-directory }}'
