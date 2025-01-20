@@ -17,7 +17,5 @@ jobs:
   releasetag:
     name: Tag Release
     uses: StanfordBDHG/.github/.github/workflows/action-release-tag.yml@v2
-    secrets:
-      access-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-    with:
-      user: PaulsAutomationBot
+    permissions:
+      contents: write
