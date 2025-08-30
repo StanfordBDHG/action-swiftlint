@@ -29,8 +29,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - shell: bash
-      run: echo SL_VERSION=${{ inputs.version }} >> $GITHUB_ENV
     - name: Download SwiftLint
       shell: bash
       run: |
