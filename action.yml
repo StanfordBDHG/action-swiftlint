@@ -31,43 +31,31 @@ runs:
   steps:
     - shell: bash
       run: echo SL_VERSION=${{ inputs.version }} >> $GITHUB_ENV
-    - name: Download SwiftLint latest (macOS)
-      if: ${{ inputs.version == 'latest' && runner.os == 'macOS' }}
+    - name: Download SwiftLint
+      if: ${{ runner.os == 'macOS' }}
       shell: bash
       run: |
+        if [ "${{ runner.os }}" = macOS ]; then
+          if [ "${{ inputs.version }}" = "latest" ]; then
+            SWIFTLINT_URL="https://github.com/realm/SwiftLint/releases/latest/download/portable_swiftlint.zip"
+          else
+            SWIFTLINT_URL="https://github.com/realm/SwiftLint/releases/download/${{ inputs.version }}/portable_swiftlint.zip"
+          fi
+        elif [ "${{ runner.os }}" = Linux ]; then
+          if [ "${{ inputs.version }}" = "latest" ]; then
+            SWIFTLINT_URL="https://github.com/realm/SwiftLint/releases/latest/download/swiftlint_linux_amd64.zip"
+          elif [ "${{ inputs.version}}" < "0.60.0" ]; then
+            SWIFTLINT_URL="https://github.com/realm/SwiftLint/releases/download/${{ inputs.version }}/swiftlint_linux.zip"
+          else
+            SWIFTLINT_URL="https://github.com/realm/SwiftLint/releases/download/${{ inputs.version }}/swiftlint_linux_amd64.zip"
+          fi
+        else
+          echo "Unsupported platform ${{ runner.os }}"
+          exit 1
+        fi
         mkdir download && cd download
-        wget https://github.com/realm/SwiftLint/releases/latest/download/portable_swiftlint.zip
-        unzip portable_swiftlint.zip
-        echo SWIFTLINT_BINARY="$(pwd -L)/swiftlint" >> $GITHUB_ENV
+        wget $SWIFTLINT_URL
       working-directory: ${{ github.action_path }}
-    - name: Download SwiftLint ${{ inputs.version }} (macOS)
-      if: ${{ inputs.version != 'latest' && runner.os == 'macOS' }}
-      shell: bash
-      run: |
-        mkdir download && cd download
-        wget https://github.com/realm/SwiftLint/releases/latest/download/portable_swiftlint.zip
-        unzip portable_swiftlint.zip
-        echo SWIFTLINT_BINARY="$(pwd -L)/swiftlint" >> $GITHUB_ENV
-      working-directory: ${{ github.action_path }}
-    - name: Download SwiftLint latest (Linux)
-      if: ${{ inputs.version == 'latest' && runner.os == 'Linux' }}
-      shell: bash
-      run: |
-        mkdir download && cd download
-        wget https://github.com/realm/SwiftLint/releases/latest/download/swiftlint_linux_amd64.zip
-        unzip swiftlint_linux_amd64.zip
-        echo SWIFTLINT_BINARY="$(pwd -L)/swiftlint" >> $GITHUB_ENV
-      working-directory: ${{ github.action_path }}
-    - name: Download SwiftLint ${{ inputs.version }} (Linux)
-      if: ${{ inputs.version != 'latest' && runner.os == 'Linux' }}
-      shell: bash
-      run: |
-        mkdir download && cd download
-        wget https://github.com/realm/SwiftLint/releases/download/${{ env.SL_VERSION }}/swiftlint_linux_amd64.zip
-        unzip swiftlint_linux_amd64.zip
-        echo SWIFTLINT_BINARY="$(pwd -L)/swiftlint" >> $GITHUB_ENV
-      working-directory: ${{ github.action_path }}
-
     - name: Print Environment
       shell: bash
       run: |
