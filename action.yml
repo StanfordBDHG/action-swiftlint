@@ -43,7 +43,7 @@ runs:
         elif [ "${{ runner.os }}" = Linux ]; then
           if [ "${{ inputs.version }}" = "latest" ]; then
             SWIFTLINT_URL="https://github.com/realm/SwiftLint/releases/latest/download/swiftlint_linux_amd64.zip"
-          elif [ "${{ inputs.version}}" < "0.60.0" ]; then
+          elif [[ "${{ inputs.version}}" < "0.60.0" ]]; then
             SWIFTLINT_URL="https://github.com/realm/SwiftLint/releases/download/${{ inputs.version }}/swiftlint_linux.zip"
           else
             SWIFTLINT_URL="https://github.com/realm/SwiftLint/releases/download/${{ inputs.version }}/swiftlint_linux_amd64.zip"
