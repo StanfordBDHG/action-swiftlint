@@ -32,7 +32,6 @@ runs:
     - shell: bash
       run: echo SL_VERSION=${{ inputs.version }} >> $GITHUB_ENV
     - name: Download SwiftLint
-      if: ${{ runner.os == 'macOS' }}
       shell: bash
       run: |
         if [ "${{ runner.os }}" = macOS ]; then
