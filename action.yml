@@ -54,8 +54,8 @@ runs:
       shell: bash
       run: |
         mkdir download && cd download
-        wget https://github.com/realm/SwiftLint/releases/latest/download/swiftlint_linux.zip
-        unzip swiftlint_linux.zip
+        wget https://github.com/realm/SwiftLint/releases/latest/download/swiftlint_linux_amd64.zip
+        unzip swiftlint_linux_amd64.zip
         echo SWIFTLINT_BINARY="$(pwd -L)/swiftlint" >> $GITHUB_ENV
       working-directory: ${{ github.action_path }}
     - name: Download SwiftLint ${{ inputs.version }} (Linux)
@@ -63,8 +63,8 @@ runs:
       shell: bash
       run: |
         mkdir download && cd download
-        wget https://github.com/realm/SwiftLint/releases/download/${{ env.SL_VERSION }}/swiftlint_linux.zip
-        unzip swiftlint_linux.zip
+        wget https://github.com/realm/SwiftLint/releases/download/${{ env.SL_VERSION }}/swiftlint_linux_amd64.zip
+        unzip swiftlint_linux_amd64.zip
         echo SWIFTLINT_BINARY="$(pwd -L)/swiftlint" >> $GITHUB_ENV
       working-directory: ${{ github.action_path }}
 
