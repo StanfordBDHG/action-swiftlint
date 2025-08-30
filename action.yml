@@ -54,7 +54,9 @@ runs:
           exit 1
         fi
         mkdir download && cd download
-        wget $SWIFTLINT_URL
+        wget -o swiftlint.zip $SWIFTLINT_URL
+        unzip swiftlint.zip
+        echo SWIFTLINT_BINARY="$(pwd -L)/swiftlint" >> $GITHUB_ENV
       working-directory: ${{ github.action_path }}
     - name: Print Environment
       shell: bash
